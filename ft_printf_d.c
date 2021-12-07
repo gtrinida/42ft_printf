@@ -71,17 +71,18 @@ int	ft_nlen(int n)
 	return (count);
 }
 
-void	ft_putnbr_fd(int n, int fd)
+int	ft_putnbr_fd(int n, int fd, int *len)
 {
 	int				i;
-	int				len;
+	int				lenght;
 	char			num[10000];
 	long long int	number;
 
 	number = n;
 	i = 0;
-	len = ft_nlen(n);
-	num[len--] = '\0';
+	lenght = ft_nlen(n);
+	*len = lenght;
+	num[lenght--] = '\0';
 	if (number < 0)
 	{
 		num[0] = '-';
@@ -91,13 +92,14 @@ void	ft_putnbr_fd(int n, int fd)
 		num[0] = '0';
 	while (number > 0)
 	{
-		num[len--] = '0' + (number % 10);
+		num[lenght--] = '0' + (number % 10);
 		number = number / 10;
 	}
 	while (num[i] != '\0')
 	{
 		write(fd, &num[i++], 1);
 	}
+	return (*len);
 }
 //не выводит len, доработать
 int	ft_printf_d(va_list *arg, int *len)
@@ -105,6 +107,6 @@ int	ft_printf_d(va_list *arg, int *len)
 	int n;
 
 	n = va_arg(*arg, int);
-	ft_putnbr_fd(n, 1);
+	*len = ft_putnbr_fd(n, 1, len);
 	return (*len);
 }
