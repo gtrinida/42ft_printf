@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char ft_hex_p(int res)
+char	ft_hex_p(int res)
 {
 	if (res < 10)
 		return (res + '0');
@@ -17,7 +17,8 @@ char ft_hex_p(int res)
 	else if (res == 15)
 		return ('f');
 }
-void ft_write_p(char *res, int i)
+
+void	ft_write_p(char *res, int i)
 {
 	char	tmp;
 
@@ -31,19 +32,24 @@ void ft_write_p(char *res, int i)
 	free(res);
 	res = 0;
 }
-int ft_check_len_p(unsigned num)
+
+int	ft_check_len_p(unsigned num, int *len)
 {
 	int i;
-	
+
 	i = 0;
 	write(1, "0x", 2); //либо писать это в функции ft_write_p, тогда выведет просто 0, а не 0х0.
+	++(*len);
 	while (num > 0)
 	{
 		num = num / 16;
 		i++;
+		++(*len);
 	}
+	++(*len);
 	return (i - 1);
 }
+
 void	ft_printf_p(va_list *arg, int *len)
 {
 	unsigned int	num;
@@ -53,7 +59,7 @@ void	ft_printf_p(va_list *arg, int *len)
 	int				i;
 
 	num = (unsigned int)va_arg(*arg, unsigned int);
-	i = ft_check_len_p(num);
+	i = ft_check_len_p(num, len);
 	if (num == 0)
 	{
 		write(1, "0", 1);

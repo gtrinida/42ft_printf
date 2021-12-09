@@ -4,6 +4,6 @@ void	ft_printf_c(va_list *arg, int *len)
 {
 	char	*result;
 	result = (char *)va_arg(*arg, int);
-		*len++;
+	++(*len);
 	write(1, &result, 1);
 }

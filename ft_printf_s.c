@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int	ft_printf_s(va_list *arg, int *len)
+void	ft_printf_s(va_list *arg, int *len)
 {
 	char	*str;
 	int		i;
@@ -10,8 +10,7 @@ int	ft_printf_s(va_list *arg, int *len)
 	while (str[i] != '\0')
 	{
 		write (1, &str[i], 1);
-		len++;
+		++*(len);
 		i++;
 	}
-	return (*len);
 }

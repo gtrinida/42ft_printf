@@ -49,10 +49,10 @@ char	*ft_itoa(unsigned int n)
 	return (nbr);
 }
 
-int ft_printf_u(va_list *arg, int *len)
+void	ft_printf_u(va_list *arg, int *len)
 {
-	unsigned int u;
-	char		*res;
+	unsigned int	u;
+	char			*res;
 	u = va_arg(*arg, unsigned int);
 
 	res = ft_itoa(u);
@@ -61,6 +61,6 @@ int ft_printf_u(va_list *arg, int *len)
 	{
 		write(1, &res[u], 1);
 		u++;
+		++(*len);
 	}
-	return (*len);
 }

@@ -20,7 +20,7 @@ void	ft_putstr(char *s)
 }
 
 int	ft_format(va_list *arg, int *len, const char *format)
-{
+{	
 	// if (*format == 'c')
 	// 	ft_printf_c(arg, len);
 	// if (*format == 's')
@@ -33,15 +33,14 @@ int	ft_format(va_list *arg, int *len, const char *format)
 	// 	ft_printf_u(arg, len);
 	// if (*format == 'x')
 	// 	ft_printf_x(arg, len);
- 	// if (*format == 'X')
+	//  if (*format == 'X')
  	// 	ft_printf_upX(arg, len);
  	// if (*format == '%')
  	// 	ft_printf_percent(arg, len);
-	return (*len);
- }
+}
 
- int	ft_printf(const char *format, ...)
- {
+int	ft_printf(const char *format, ...)
+{
  	int		len;
  	va_list	ap;
 
@@ -64,16 +63,16 @@ int	ft_format(va_list *arg, int *len, const char *format)
  		format++;
  	}
  	return (len);
- }
+}
 
 int main (void)
 {
-	int d = 65465564;
-	int d2 = -500;
-	char d3 = 'a';
-	unsigned int d4 = 5000000;
-	char *d5 = "HELLO*&^^&^&";
-	ft_printf ("This is my prin: %p\n", d);
-	ft_printf ("This is my prin: %p\n", d3);
-
+	int len2;
+	int len;
+	int a = 0;
+	len = ft_printf ("%p\n", a);
+	// len2 = printf ("%p\n", a);
+		
+	printf ("My print len: %d\n", len);
+	// printf ("Original len: %d\n", len2);
 }

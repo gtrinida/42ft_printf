@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-char ft_hex_x(int res)
+char	ft_hex_x(int res)
 {
 	if (res < 10)
 		return (res + '0');
@@ -17,7 +17,8 @@ char ft_hex_x(int res)
 	else if (res == 15)
 		return ('f');
 }
-void ft_write_x(char *res, int i)
+
+void	ft_write_x(char *res, int i, int *len)
 {
 	char	tmp;
 
@@ -27,15 +28,23 @@ void ft_write_x(char *res, int i)
 		tmp = res[i];
 		write (1, &tmp, 1);
 		i++;
+		++(*len);
 	}
 	free(res);
 	res = 0;
 }
-int ft_check_len_x(unsigned num)
+
+int	ft_check_len_x(unsigned int num, int *len)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
+	if (num == 0)
+	{
+		write(1, "0", 1);
+		++(*len);
+		return (0);
+	}
 	while (num > 0)
 	{
 		num = num / 16;
@@ -43,6 +52,7 @@ int ft_check_len_x(unsigned num)
 	}
 	return (i - 1);
 }
+
 void	ft_printf_x(va_list *arg, int *len)
 {
 	unsigned int	num;
@@ -52,12 +62,9 @@ void	ft_printf_x(va_list *arg, int *len)
 	int				i;
 
 	num = (unsigned int)va_arg(*arg, unsigned int);
-	i = ft_check_len_x(num);
-	if (num == 0)
-	{
-		write(1, "0", 1);
+	i = ft_check_len_x(num, len);
+	if (!i)
 		return;
-	}
 	res = malloc(sizeof(char) * (i + 1));
 	res[++i] = '\0';
 	i--;
@@ -69,5 +76,5 @@ void	ft_printf_x(va_list *arg, int *len)
 		num = num / 16;
 		i--;
 	}
-	ft_write_x(res, i);
+	ft_write_x(res, i, len);
 }
