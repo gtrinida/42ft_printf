@@ -6,7 +6,7 @@
 /*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 13:51:05 by gtrinida          #+#    #+#             */
-/*   Updated: 2021/12/13 18:15:47 by gtrinida         ###   ########.fr       */
+/*   Updated: 2021/12/13 18:27:58 by gtrinida         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	ft_printf_p(va_list *arg, int *len)
 		return ;
 	}
 	res = malloc(sizeof(char) * (i + 2));
-	res[++i] = '\0';
-	i--;
+	res[i + 1] = '\0';
 	while (num > 0)
 	{
 		rem = num % 16;
