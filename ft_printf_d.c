@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_d.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/13 13:50:39 by gtrinida          #+#    #+#             */
+/*   Updated: 2021/12/13 13:50:47 by gtrinida         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_nlen(int n)
@@ -49,6 +61,7 @@ void	ft_putnbr_fd(int n, int fd, int *len)
 	while (num[i] != '\0')
 		write(fd, &num[i++], 1);
 }
+
 void	ft_printf_d(va_list *arg, int *len)
 {
 	int	n;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_u.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gtrinida <gtrinida@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/13 13:53:01 by gtrinida          #+#    #+#             */
+/*   Updated: 2021/12/13 14:56:12 by gtrinida         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int	ft_len(unsigned int n)
@@ -34,12 +46,7 @@ char	*ft_itoa(unsigned int n)
 	if (!nbr)
 		return (0);
 	nbr[len--] = '\0';
-	if (number < 0)
-	{
-		nbr[0] = '-';
-		number = number * (-1);
-	}
-	else if (number == 0)
+	if (number == 0)
 		nbr[len] = '0';
 	while (number > 0)
 	{
@@ -53,8 +60,8 @@ void	ft_printf_u(va_list *arg, int *len)
 {
 	unsigned int	u;
 	char			*res;
-	u = va_arg(*arg, unsigned int);
 
+	u = va_arg(*arg, unsigned int);
 	res = ft_itoa(u);
 	u = 0;
 	while (res[u] != '\0')
@@ -63,4 +70,6 @@ void	ft_printf_u(va_list *arg, int *len)
 		u++;
 		++(*len);
 	}
+	free(res);
+	res = 0;
 }
